@@ -84,7 +84,7 @@ def ParseSignal(signal: str) -> dict:
         return {}
 
     # extracts symbol from trade signal
-    trade['Symbol'] = (signal[0].split())[-1].upper()
+    trade['Symbol'] = (signal[0].split())[-1]
     
     # checks if the symbol is valid, if not, returns an empty dictionary
     if(trade['Symbol'] not in SYMBOLS):
@@ -119,7 +119,7 @@ def GetTradeInformation(update: Update, trade: dict, balance: float) -> None:
     """
 
     # calculates the stop loss in pips
-    if(trade['Symbol'] == 'XAUUSD'):
+    if(trade['Symbol'] == 'XAUUSDc'):
         multiplier = 0.1
 
     elif(trade['Symbol'] == 'XAGUSD'):
