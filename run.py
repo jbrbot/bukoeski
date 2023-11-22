@@ -236,7 +236,7 @@ async def ConnectMetaTrader(update: Update, trade: dict, enterTrade: bool):
         # obtains account information from MetaTrader server
         account_information = await connection.get_account_information()
 
-        update.effective_message.reply_text("Successfully connected to MetaTrader!\nCalculating trade risk ... ")
+        update.effective_message.reply_text("Connected to Broker!\nCalculating ... ")
 
         # checks if the order is a market execution to get the current price of symbol
         if(trade['Entry'] == 'NOW'):
@@ -257,7 +257,7 @@ async def ConnectMetaTrader(update: Update, trade: dict, enterTrade: bool):
         if(enterTrade == True):
 
             # enters trade on to MetaTrader account
-            update.effective_message.reply_text("Entering trade on MetaTrader Account ...")
+            update.effective_message.reply_text("Entering trade...")
 
             try:
                 # executes buy market execution order
@@ -291,7 +291,7 @@ async def ConnectMetaTrader(update: Update, trade: dict, enterTrade: bool):
                         result = await connection.create_stop_sell_order(trade['Symbol'], trade['PositionSize'] / len(trade['TP']), trade['Entry'], trade['StopLoss'], takeProfit)
                 
                 # sends success message to user
-                update.effective_message.reply_text("Trade entered successfully! 💰")
+                update.effective_message.reply_text("Done! ")
                 
                 # prints success message to console
                 logger.info('\nTrade entered successfully!')
@@ -330,7 +330,7 @@ def PlaceTrade(update: Update, context: CallbackContext) -> int:
 
             # sets the user context trade equal to the parsed trade
             context.user_data['trade'] = trade
-            update.effective_message.reply_text("Trade Successfully Parsed! \nConnecting to MetaTrader ... \nMay take a while !")
+            update.effective_message.reply_text("Successfully Parsed! \nConnecting to Broker. \nMay take a while !")
         
         except Exception as error:
             logger.error(f'Error: {error}')
@@ -369,7 +369,7 @@ def CalculateTrade(update: Update, context: CallbackContext) -> int:
 
             # sets the user context trade equal to the parsed trade
             context.user_data['trade'] = trade
-            update.effective_message.reply_text("Trade Successfully Parsed! \nConnecting to MetaTrader ... (May take a while) ")
+            update.effective_message.reply_text("Successfully Parsed! \nConnecting to Broker. \nMay take a while !")
         
         except Exception as error:
             logger.error(f'Error: {error}')
@@ -483,7 +483,7 @@ def Trade_Command(update: Update, context: CallbackContext) -> int:
     context.user_data['trade'] = None
     
     # asks user to enter the trade
-    update.effective_message.reply_text("Please enter the trade that you would like to place.")
+    update.effective_message.reply_text("Entry?")
 
     return TRADE
 
