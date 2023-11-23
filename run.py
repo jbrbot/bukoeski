@@ -482,7 +482,7 @@ def Trade_Command(update: Update, context: CallbackContext) -> int:
     context.user_data['trade'] = None
     
     # asks user to enter the trade
-    update.effective_message.reply_text("Entry?")
+    update.effective_message.reply_text("Entry ?")
 
     return TRADE
 
