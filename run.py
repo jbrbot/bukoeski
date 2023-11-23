@@ -236,7 +236,7 @@ async def ConnectMetaTrader(update: Update, trade: dict, enterTrade: bool):
         # obtains account information from MetaTrader server
         account_information = await connection.get_account_information()
 
-        update.effective_message.reply_text("Connected to Broker!\nCalculating ... ")
+        update.effective_message.reply_text("Connected to Broker !")
 
         # checks if the order is a market execution to get the current price of symbol
         if(trade['Entry'] == 'NOW'):
@@ -257,7 +257,7 @@ async def ConnectMetaTrader(update: Update, trade: dict, enterTrade: bool):
         if(enterTrade == True):
 
             # enters trade on to MetaTrader account
-            update.effective_message.reply_text("Entering trade...")
+            update.effective_message.reply_text("Placing trade !")
 
             try:
                 # executes buy market execution order
@@ -291,7 +291,7 @@ async def ConnectMetaTrader(update: Update, trade: dict, enterTrade: bool):
                         result = await connection.create_stop_sell_order(trade['Symbol'], trade['PositionSize'] / len(trade['TP']), trade['Entry'], trade['StopLoss'], takeProfit)
                 
                 # sends success message to user
-                update.effective_message.reply_text("Done! ")
+                update.effective_message.reply_text("Done !")
                 
                 # prints success message to console
                 logger.info('\nTrade entered successfully!')
@@ -330,7 +330,7 @@ def PlaceTrade(update: Update, context: CallbackContext) -> int:
 
             # sets the user context trade equal to the parsed trade
             context.user_data['trade'] = trade
-            update.effective_message.reply_text("Successfully Parsed! \nConnecting to Broker. \nMay take a while !")
+            update.effective_message.reply_text("Successfully Parsed !")
         
         except Exception as error:
             logger.error(f'Error: {error}')
@@ -412,7 +412,7 @@ def welcome(update: Update, context: CallbackContext) -> None:
         context: CallbackContext object that stores commonly used objects in handler callbacks
     """
 
-    welcome_message = "Goodluck"
+    welcome_message = "All set !"
     
     # sends messages to user
     update.effective_message.reply_text(welcome_message)
